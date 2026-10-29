@@ -76,3 +76,27 @@ export function parseInputDate(value) {
   // new Date(år, måned, dag) – måned starter på 0, derfor -1
   return new Date(aar, maaned - 1, dag);
 }
+
+// ----- Prisfarver (bonus) -----
+
+// De 8 farver fra designet, fra billigst (grøn) til dyrest (rød)
+const PRIS_FARVER = [
+  '#00FF29', '#33FF00', '#B8FF22', '#EDFF23',
+  '#FFD645', '#FF8717', '#FF7A00', '#FF4D00',
+];
+
+// Giver en farve ud fra hvor prisen ligger mellem dagens laveste og højeste pris
+export function getPriceColor(price, min, max) {
+  // Er alle priser ens, kan vi ikke dele med 0 – så er alt "billigt"
+  if (max === min) return PRIS_FARVER[0];
+
+  // Hvor langt oppe ligger prisen? 0 = laveste, 1 = højeste
+  let andel = (price - min) / (max - min);
+
+  // Hold andelen mellem 0 og 1 (fx hvis morgendagens pris er højere end dagens højeste)
+  andel = Math.min(Math.max(andel, 0), 1);
+
+  // Lav andelen om til en plads i listen (0–7) og rund til nærmeste hele tal
+  const index = Math.round(andel * (PRIS_FARVER.length - 1));
+  return PRIS_FARVER[index];
+}

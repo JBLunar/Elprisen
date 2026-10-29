@@ -5,13 +5,24 @@
   <!-- Gør at siden skalerer korrekt på mobil -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elprisen lige nu</title>
+  <meta name="description" content="Se elprisen lige nu, dagens oversigt og historik">
 
-  <!-- Skrifttypen Roboto fra Google Fonts (normal, medium og fed) -->
+  <!-- ===== PWA ===== -->
+  <!-- Manifestet fortæller browseren at siden kan installeres som en app -->
+  <link rel="manifest" href="manifest.json">
+  <!-- Farven på telefonens statuslinje -->
+  <meta name="theme-color" content="#201E1E">
+  <!-- Ikonet i browserfanen (fjerner også favicon-404-fejlen) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <!-- iPhone læser ikke ikonerne fra manifestet, så den skal have sit eget -->
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+  <!-- Skrifttypen Roboto fra Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-  <!-- FontAwesome-ikoner (tandhjul, lyn, kalender, kryds) -->
+  <!-- FontAwesome-ikoner -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Vores egen CSS – SKAL ligge sidst, så den kan overskrive de andre -->

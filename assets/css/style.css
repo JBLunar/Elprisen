@@ -145,6 +145,7 @@ ul {
 /* =========================================
    SEKTIONER – indholdet inde i kortet
    ========================================= */
+.front,
 .overview,
 .history,
 .settings {
@@ -263,7 +264,8 @@ ul {
 }
 
 .price-list__price {
-  color: var(--color-green);       /* bliver dynamisk rød→grøn i bonus-trinnet */
+  /* Farven kommer fra JavaScript. Mangler den, bruges den grønne som reserve */
+  color: var(--price-color, var(--color-green));
 }
 
 /* =========================================
