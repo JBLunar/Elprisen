@@ -1,4 +1,4 @@
-// Henter elpriser. Hvis man ikke sender dato/region med, bruges standardværdierne
+// Henter elpriser for en bestemt dato og region (DK1 = Vest, DK2 = Øst)
 export async function getCurrentData(dato = new Date(), region = 'DK1') {
   const aar = dato.getFullYear();
   // getMonth() starter på 0, derfor +1. padStart gør 5 til "05"
@@ -15,4 +15,19 @@ export async function getCurrentData(dato = new Date(), region = 'DK1') {
   }
 
   return await svar.json();
+}
+
+// Henter morgendagens priser. Er de ikke udgivet endnu, får vi et tomt array
+export async function getTomorrowData(region = 'DK1') {
+  // Lav en dato og ryk den én dag frem
+  const iMorgen = new Date();
+  iMorgen.setDate(iMorgen.getDate() + 1);
+
+  // try/catch: "prøv dette – og hvis det fejler, så gør det i catch i stedet for at crashe"
+  try {
+    return await getCurrentData(iMorgen, region);
+  } catch (fejl) {
+    console.log('Morgendagens priser er ikke udgivet endnu');
+    return [];
+  }
 }
